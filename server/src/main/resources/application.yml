@@ -1,0 +1,25 @@
+spring:
+  mvc:
+    servlet:
+      path: /api
+  config:
+    import: optional:file:.env.properties
+  application:
+    name: footprint
+    jwtSecret: ${JWT_SECRET}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS}
+    refreshExpirationMs: ${JWT_REFRESH_EXPIRATION_MS}
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: ${DATASOURCE_DIALECT}
+client:
+  url: ${CLIENT_URL}
