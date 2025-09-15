@@ -1,6 +1,6 @@
-package com.example.footprint.repository;
+package com.example.footprint.repository.user;
 
-import com.example.footprint.domain.entity.User;
+import com.example.footprint.domain.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

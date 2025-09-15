@@ -1,6 +1,6 @@
-package com.example.footprint.repository;
+package com.example.footprint.repository.user;
 
-import com.example.footprint.domain.entity.RefreshToken;
+import com.example.footprint.domain.entity.user.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,10 +1,11 @@
 package com.example.footprint.service.authentication;
 
-import com.example.footprint.domain.entity.Role;
+import com.example.footprint.domain.entity.user.Role;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -51,8 +52,9 @@ public class JwtService {
                 .get("role");
     }
 
-    public boolean validateToken(String token, String email) {
-        return email.equals(extractEmail(token)) && !isTokenExpired(token);
+    public boolean validateToken(String token, UserDetails userDetails) {
+        String email = extractEmail(token);
+        return email.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {

@@ -1,20 +1,19 @@
 package com.example.footprint.service.authentication;
 
-import com.example.footprint.domain.dto.LoginDto;
-import com.example.footprint.domain.dto.RegisterDto;
-import com.example.footprint.domain.dto.UserDto;
-import com.example.footprint.domain.entity.ERole;
-import com.example.footprint.domain.entity.RefreshToken;
-import com.example.footprint.domain.entity.Role;
-import com.example.footprint.domain.entity.User;
+import com.example.footprint.domain.dto.user.LoginDto;
+import com.example.footprint.domain.dto.user.RegisterDto;
+import com.example.footprint.domain.dto.user.UserDto;
+import com.example.footprint.domain.entity.user.ERole;
+import com.example.footprint.domain.entity.user.RefreshToken;
+import com.example.footprint.domain.entity.user.Role;
+import com.example.footprint.domain.entity.user.User;
 
-import com.example.footprint.repository.RefreshTokenRepository;
-import com.example.footprint.repository.RoleRepository;
-import com.example.footprint.repository.UserRepository;
+import com.example.footprint.repository.user.RefreshTokenRepository;
+import com.example.footprint.repository.user.RoleRepository;
+import com.example.footprint.repository.user.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseCookie;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalArgumentException("User with this email already exists!");
         }
 
-        Role userRole = roleRepository.findByRole(ERole.USER)
+        Role userRole = roleRepository.findByRole(ERole.ROLE_USER)
                 .orElseThrow(() -> new IllegalArgumentException("Default role doesn't exists!"));
 
         User user = new User();

@@ -1,6 +1,6 @@
-package com.example.footprint.domain.dto;
+package com.example.footprint.domain.dto.user;
 
-import com.example.footprint.domain.entity.ERole;
+import com.example.footprint.domain.entity.user.ERole;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.example.footprint.domain.dto;
+package com.example.footprint.domain.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -6,17 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class RegisterDto {
+public class LoginDto {
     @Email
     @NotBlank
-    String email;
+    public String email;
 
     @Size(min = 6, max = 72)
-    String password;
-
-    @NotBlank
-    String firstName;
-
-    @NotBlank
-    String lastName;
+    public String password;
 }

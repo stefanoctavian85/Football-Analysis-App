@@ -1,4 +1,4 @@
-package com.example.footprint.domain.entity;
+package com.example.footprint.domain.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 

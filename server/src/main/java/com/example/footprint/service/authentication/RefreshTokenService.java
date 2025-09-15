@@ -1,9 +1,8 @@
 package com.example.footprint.service.authentication;
 
-import com.example.footprint.domain.entity.RefreshToken;
-import com.example.footprint.domain.entity.User;
-import com.example.footprint.repository.RefreshTokenRepository;
-import com.example.footprint.repository.UserRepository;
+import com.example.footprint.domain.entity.user.RefreshToken;
+import com.example.footprint.repository.user.RefreshTokenRepository;
+import com.example.footprint.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

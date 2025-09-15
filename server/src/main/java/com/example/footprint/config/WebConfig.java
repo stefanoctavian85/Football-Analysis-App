@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
     @Value("${client.url}")
     private String CLIENT_URL;
@@ -17,7 +17,7 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/auth/**")
+                registry.addMapping("/**")
                         .allowedOrigins(CLIENT_URL)
                         .allowedHeaders("*")
                         .allowedMethods("GET", "POST", "PUT", "OPTIONS", "DELETE")

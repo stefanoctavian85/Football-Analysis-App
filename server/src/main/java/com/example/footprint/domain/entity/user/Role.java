@@ -1,4 +1,4 @@
-package com.example.footprint.domain.entity;
+package com.example.footprint.domain.entity.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

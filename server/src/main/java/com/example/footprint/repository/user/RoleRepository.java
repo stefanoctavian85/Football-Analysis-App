@@ -1,7 +1,7 @@
-package com.example.footprint.repository;
+package com.example.footprint.repository.user;
 
-import com.example.footprint.domain.entity.ERole;
-import com.example.footprint.domain.entity.Role;
+import com.example.footprint.domain.entity.user.ERole;
+import com.example.footprint.domain.entity.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

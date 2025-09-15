@@ -1,9 +1,9 @@
 package com.example.footprint.controller;
 
-import com.example.footprint.domain.dto.LoginDto;
-import com.example.footprint.domain.dto.RegisterDto;
-import com.example.footprint.domain.dto.UserDto;
-import com.example.footprint.repository.RefreshTokenRepository;
+import com.example.footprint.domain.dto.user.LoginDto;
+import com.example.footprint.domain.dto.user.RegisterDto;
+import com.example.footprint.domain.dto.user.UserDto;
+import com.example.footprint.repository.user.RefreshTokenRepository;
 import com.example.footprint.service.authentication.AuthService;
 import com.example.footprint.service.authentication.JwtService;
 import com.example.footprint.service.authentication.RefreshTokenService;
