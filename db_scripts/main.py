@@ -214,19 +214,21 @@ def insert_lineup_for_each_match(lineup, match_id):
             cards = player.get("cards", [])
             if cards:
                 for card in cards:
-                    safe_insert("cards", ["time_card", "card_type", "reason", "period", "lineup_id"], {
+                    safe_insert("cards", ["time_card", "card_type", "reason", "period", "lineup_id", "player_id", "match_id"], {
                         "time_card": card.get("time"),
                         "card_type": card.get("card_type"),
                         "reason": card.get("reason"),
                         "period": card.get("period"),
-                        "lineup_id": lineup_id
+                        "lineup_id": lineup_id,
+                        "player_id": player.get("player_id"),
+                        "match_id": match_id
                     })
 
             positions = player.get("positions", [])
             if positions:
                 for position in positions:
                     safe_insert("positions", ["position_id", "lineup_id", "position", "from_time", "to_time", "from_period",
-                                              "to_period", "start_reason", "end_reason"], {
+                                              "to_period", "start_reason", "end_reason", "player_id", "match_id"], {
                         "position_id": position.get("position_id"),
                         "lineup_id": lineup_id,
                         "position": position.get("position"),
@@ -236,6 +238,8 @@ def insert_lineup_for_each_match(lineup, match_id):
                         "to_period": position.get("to_period"),
                         "start_reason": position.get("start_reason"),
                         "end_reason": position.get("end_reason"),
+                        "player_id": player.get("player_id"),
+                        "match_id": match_id
                     })
 
 def insert_events():

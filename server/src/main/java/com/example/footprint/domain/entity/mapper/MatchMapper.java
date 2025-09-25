@@ -11,6 +11,7 @@ public interface MatchMapper {
     @Mapping(source = "competition.competitionPK.seasonId", target = "seasonId")
     @Mapping(source = "homeTeam.teamName", target = "homeTeamName")
     @Mapping(source = "awayTeam.teamName", target = "awayTeamName")
+    @Mapping(target = "winner", expression = "java(getWinner(match))")
     MatchDto toDto(Match match);
 
     @Mapping(source = "competitionId", target = "competition.competitionPK.competitionId")
@@ -18,4 +19,14 @@ public interface MatchMapper {
     @Mapping(source = "homeTeamName", target = "homeTeam.teamName")
     @Mapping(source = "awayTeamName", target = "awayTeam.teamName")
     Match fromDto(MatchDto matchDto);
+
+    default String getWinner(Match match) {
+        if (match.getHomeScore() > match.getAwayScore()) {
+            return match.getHomeTeam().getTeamName();
+        } else if (match.getHomeScore() < match.getAwayScore()) {
+            return match.getAwayTeam().getTeamName();
+        } else {
+            return "Draw";
+        }
+    }
 }

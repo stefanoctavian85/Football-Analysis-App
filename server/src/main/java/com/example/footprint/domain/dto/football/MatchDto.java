@@ -17,4 +17,5 @@ public class MatchDto {
     private int matchWeek;
     private String homeTeamName;
     private String awayTeamName;
+    private String winner;
 }

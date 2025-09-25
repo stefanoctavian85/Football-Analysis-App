@@ -1,6 +1,5 @@
 package com.example.footprint.service.football.competition;
 
-import com.example.footprint.domain.dto.football.CompetitionDto;
 import com.example.footprint.domain.dto.football.SeasonDto;
 import com.example.footprint.domain.dto.football.combinations.CompetitionSeasonsDto;
 import com.example.footprint.domain.entity.football.Competition;

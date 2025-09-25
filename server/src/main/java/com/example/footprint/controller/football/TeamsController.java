@@ -1,4 +1,4 @@
-package com.example.footprint.controller;
+package com.example.footprint.controller.football;
 
 import com.example.footprint.domain.dto.football.TeamDto;
 import com.example.footprint.service.football.team.TeamsService;

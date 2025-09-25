@@ -1,7 +1,7 @@
 package com.example.footprint.service.football.team;
 
-import com.example.footprint.domain.dto.football.CountryDto;
 import com.example.footprint.domain.dto.football.TeamDto;
+import com.example.footprint.domain.entity.football.Country;
 import com.example.footprint.domain.entity.football.Team;
 import com.example.footprint.repository.football.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class TeamsServiceImpl implements TeamsService {
             teamDto.setTeamName(team.getTeamName());
             teamDto.setTeamGender(team.getTeamGender());
 
-            CountryDto countryDto = new CountryDto();
+            Country countryDto = new Country();
             countryDto.setCountryId(team.getCountry().getCountryId());
             countryDto.setCountryName(team.getCountry().getCountryName());
 

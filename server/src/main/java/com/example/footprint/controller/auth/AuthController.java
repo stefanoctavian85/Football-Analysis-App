@@ -1,4 +1,4 @@
-package com.example.footprint.controller;
+package com.example.footprint.controller.auth;
 
 import com.example.footprint.domain.dto.user.LoginDto;
 import com.example.footprint.domain.dto.user.RegisterDto;

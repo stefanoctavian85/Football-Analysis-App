@@ -154,3 +154,15 @@ CREATE TABLE event_types (
 
 ALTER TABLE events
 ADD FOREIGN KEY (event_type) REFERENCES event_types(event_id);
+
+ALTER TABLE cards
+ADD COLUMN player_id INT REFERENCES players(player_id);
+
+ALTER TABLE cards
+ADD COLUMN match_id INT REFERENCES matches(match_id);
+
+ALTER TABLE positions
+ADD COLUMN player_id INT REFERENCES players(player_id);
+
+ALTER TABLE positions
+ADD COLUMN match_id INT REFERENCES matches(match_id);
