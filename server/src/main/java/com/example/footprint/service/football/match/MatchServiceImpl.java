@@ -5,6 +5,7 @@ import com.example.footprint.domain.dto.football.PositionDto;
 import com.example.footprint.domain.dto.football.TeamStatsDto;
 import com.example.footprint.domain.dto.football.combinations.MatchLineupDto;
 import com.example.footprint.domain.dto.football.combinations.PlayersPositionsDto;
+import com.example.footprint.domain.dto.football.combinations.TeamPlayersDto;
 import com.example.footprint.domain.entity.football.Lineup;
 import com.example.footprint.domain.entity.football.Match;
 import com.example.footprint.domain.entity.football.Player;
@@ -136,35 +137,34 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Map<String, MatchLineupDto> getLineupsForMatch(int matchId) {
+    public MatchLineupDto getLineupsForMatch(int matchId) {
         Match matchFound = matchRepository.findByMatchId(matchId);
 
         if (matchFound == null) {
-            return Map.of();
+            return new MatchLineupDto();
         }
 
         int homeTeamId = matchFound.getHomeTeam().getTeamId();
         int awayTeamId = matchFound.getAwayTeam().getTeamId();
 
-        List<Player> homeTeamLineup = lineupRepository.findDistinctByMatch_MatchIdAndTeam_TeamId(matchId, homeTeamId);
+        MatchLineupDto matchLineupDto = new MatchLineupDto();
+        matchLineupDto.setMatch(matchMapper.toDto(matchFound));
 
-        MatchLineupDto matchHomeLineup = new MatchLineupDto();
-        matchHomeLineup.setMatch(matchMapper.toDto(matchFound));
-        matchHomeLineup.setTeam(matchFound.getHomeTeam());
+        TeamPlayersDto homeTeam = new TeamPlayersDto();
+        homeTeam.setTeam(matchFound.getHomeTeam());
 
-        matchHomeLineup.setPlayers(setPlayersLineupForMatch(homeTeamLineup, matchId));
+        List<Lineup> homeTeamLineup = lineupRepository.findByMatch_MatchIdAndTeam_TeamId(matchId, homeTeamId);
+        homeTeam.setPlayers(setPlayersLineupForMatch(homeTeamLineup, matchId));
+
+        TeamPlayersDto awayTeam = new TeamPlayersDto();
+        awayTeam.setTeam(matchFound.getAwayTeam());
 
         List<Lineup> awayTeamLineup = lineupRepository.findByMatch_MatchIdAndTeam_TeamId(matchId, awayTeamId);
+        awayTeam.setPlayers(setPlayersLineupForMatch(awayTeamLineup, matchId));
 
-        MatchLineupDto matchAwayLineup = new MatchLineupDto();
-        matchAwayLineup.setMatch(matchMapper.toDto(matchFound));
-        matchAwayLineup.setTeam(matchFound.getHomeTeam());
-        matchAwayLineup.setPlayers(setPlayersLineupForMatch(awayTeamLineup, matchId));
+        matchLineupDto.setHomeTeam(homeTeam);
+        matchLineupDto.setAwayTeam(awayTeam);
 
-        Map<String, MatchLineupDto> fullLineupForAMatch = new HashMap<>();
-        fullLineupForAMatch.put("homeTeam", matchHomeLineup);
-        fullLineupForAMatch.put("awayTeam", matchAwayLineup);
-
-        return fullLineupForAMatch;
+        return matchLineupDto;
     }
 }

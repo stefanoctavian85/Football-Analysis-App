@@ -11,5 +11,5 @@ public interface MatchService {
     Map<String, List<MatchDto>> getMatchesByCompetitionAndSeason(int competitionId, int seasonId);
     List<TeamStatsDto> getStandingsByCompetitionAndSeason(int competitionId, int seasonId);
     List<MatchDto> getMatchesForATeam(int competitionId, int seasonId, int teamId);
-    Map<String, MatchLineupDto> getLineupsForMatch(int matchId);
+    MatchLineupDto getLineupsForMatch(int matchId);
 }

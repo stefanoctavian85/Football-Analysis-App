@@ -43,7 +43,7 @@ public class MatchesController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Invalid parameters!"));
         }
 
-        Map<String, MatchLineupDto> lineupsForMatch = matchService.getLineupsForMatch(matchId);
+        MatchLineupDto lineupsForMatch = matchService.getLineupsForMatch(matchId);
 
         if (lineupsForMatch.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
