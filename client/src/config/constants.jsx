@@ -5,4 +5,6 @@ export const ENDPOINTS = {
     REGISTER: '/api/auth/register',
     REFRESH_TOKEN: '/api/auth/refresh',
     LOGOUT: '/api/auth/logout',
+    COMPETITIONS: '/api/competitions',
+    MATCHES: '/api/matches',
 }

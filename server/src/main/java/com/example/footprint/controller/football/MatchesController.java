@@ -3,6 +3,8 @@ package com.example.footprint.controller.football;
 import com.example.footprint.domain.dto.football.MatchDto;
 import com.example.footprint.domain.dto.football.combinations.MatchLineupDto;
 import com.example.footprint.service.football.match.MatchService;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,11 +40,7 @@ public class MatchesController {
     }
 
     @GetMapping("/match/{matchId}")
-    public ResponseEntity<?> getDetailsForAMatch(@PathVariable int matchId) {
-        if (matchId <= 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Invalid parameters!"));
-        }
-
+    public ResponseEntity<?> getDetailsForAMatch(@PathVariable @Min(1) @Max(99999999) int matchId) {
         MatchLineupDto lineupsForMatch = matchService.getLineupsForMatch(matchId);
 
         if (lineupsForMatch.isEmpty()) {

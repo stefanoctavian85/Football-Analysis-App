@@ -7,12 +7,15 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState('');
     const [accessToken, setAccessToken] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const tempIsAuth = localStorage.getItem("IS_AUTHENTICATED");
         setIsAuthenticated(tempIsAuth);
         if (tempIsAuth === "true") {
-            refreshAccessToken();
+            refreshAccessToken().finally(() => setIsLoading(false));
+        } else {
+            setIsLoading(false);
         }
     }, []);
 
@@ -128,20 +131,23 @@ export function AuthProvider({ children }) {
                 setAccessToken(data.accessToken);
                 setIsAuthenticated(true);
                 localStorage.setItem("IS_AUTHENTICATED", "true");
+                return data.accessToken;
             } else {
                 setUser('');
                 setAccessToken('');
-                return;
+                localStorage.setItem("IS_AUTHENTICATED", "false");
+                return null;
             }
         } catch (error) {
             console.error("Refresh token error: ", error);
             setUser('');
             setAccessToken('');
+            return null;
         }
     }
 
     return (
-        <AuthContext.Provider value={{ user, accessToken, login, register, logout }}>
+        <AuthContext.Provider value={{ user, accessToken, login, register, logout, isLoading, refreshAccessToken }}>
             {children}
         </AuthContext.Provider>
     );

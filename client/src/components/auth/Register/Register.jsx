@@ -1,6 +1,6 @@
 import './Register.css';
 import { useEffect, useState } from 'react';
-import { useAuth } from '../../hooks/useAuth.jsx';
+import { useAuth } from '../../../hooks/useAuth.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;

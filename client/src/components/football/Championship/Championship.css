@@ -1,0 +1,5 @@
+.standings-team {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+}

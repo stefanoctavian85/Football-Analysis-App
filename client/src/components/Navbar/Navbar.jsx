@@ -1,10 +1,8 @@
 import { useAuth } from '../../hooks/useAuth';
 import './Navbar.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const pages = [{
-    name: 'Matches', href: '/matches',
-}, {
     name: 'Players', href: '/players',
 }, {
     name: 'Standings', href: '/standings',
@@ -28,9 +26,9 @@ function Navbar() {
             <header>
                 <nav className='navbar-content'>
                     <div className='navbar-left'>
-                        <a href='/'>
+                        <Link to='/'>
                             <p>Footprint</p>
-                        </a>
+                        </Link>
                     </div>
 
                     <div className='navbar-center'>
@@ -38,9 +36,9 @@ function Navbar() {
                             {
                                 pages.map((element, index) => (
                                     <li key={index} className='navbar-center-list-item'>
-                                        <a href={element.href}>
+                                        <Link to={element.href}>
                                             {element.name}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))
                             }

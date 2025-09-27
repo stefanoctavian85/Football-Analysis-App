@@ -1,0 +1,19 @@
+.competitions-list {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.competition-card {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    max-width: 300px;
+}
+
+.competition-card-upper-side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
