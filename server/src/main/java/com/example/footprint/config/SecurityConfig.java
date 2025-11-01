@@ -24,7 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
     @Value("${client.url}")
-    private final String CLIENT_URL;
+    private String CLIENT_URL;
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;
 

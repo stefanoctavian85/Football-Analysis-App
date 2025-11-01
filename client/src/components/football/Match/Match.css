@@ -1,0 +1,8 @@
+.match-content {
+    display: flex;
+    justify-content: center;
+}
+
+.match-content-players {
+    margin: auto;
+}
