@@ -5,6 +5,7 @@ import { useApi } from '../../../hooks/useApi';
 import { ENDPOINTS } from '../../../config/constants';
 import PitchSVG from '../Pitch/Pitch';
 import { getCurrentTime, getDate } from '../../../utils/date';
+import Lineup from '../Lineup/Lineup';
 
 function Match() {
     const { matchId } = useParams();
@@ -138,8 +139,17 @@ function Match() {
                 </div>
             </div>
 
-            <div className='match-content mt-16 flex justify-center'>
-                <PitchSVG homePlayers={getStartingPlayers(matchDetails?.homeTeam.players, true)} awayPlayers={getStartingPlayers(matchDetails?.awayTeam.players, false)} />
+            <div className='match-content'>
+                <div className='match-content-players'>
+                    <Lineup players={matchDetails?.homeTeam.players}></Lineup>
+                </div>
+                <div className='match-content-center'>
+                    <PitchSVG homePlayers={getStartingPlayers(matchDetails?.homeTeam.players, true)} awayPlayers={getStartingPlayers(matchDetails?.awayTeam.players, false)} />
+                </div>
+                <div className='match-content-players'>
+                    <Lineup players={matchDetails?.awayTeam.players}></Lineup>
+                </div>
+                
             </div>
         </div>
     );
