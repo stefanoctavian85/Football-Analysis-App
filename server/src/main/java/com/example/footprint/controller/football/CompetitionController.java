@@ -20,16 +20,22 @@ public class CompetitionController {
     private final CompetitionService competitionService;
     private final MatchService matchService;
 
-    @GetMapping("/all-competitions")
-    public ResponseEntity<?> getAllCompetitions() {
-        List<CompetitionSeasonsDto> competitions = competitionService.getAllCompetitions();
+    @GetMapping
+    public ResponseEntity<?> getAllCompetitions(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "2") int pageLimit) {
+        List<CompetitionSeasonsDto> competitions = competitionService.getAllCompetitions(page, pageLimit);
 
         if (competitions.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                     Map.of("message", "No competitions!"));
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(Map.of("competitions", competitions));
+        int totalItems = competitionService.countAllCompetitions();
+        int totalPages = (int) Math.ceil((double) totalItems / pageLimit);
+
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "competitions", competitions,
+                "totalPages", totalPages
+        ));
     }
 
     @GetMapping("/{competitionId}/{seasonId}")

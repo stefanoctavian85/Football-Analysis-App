@@ -9,7 +9,7 @@ function Lineup({ players }) {
     }, []);
 
     function sortPlayersByJerseyNumber(players) {
-        let firstEleven = players.filter((element, index) => {
+        let firstEleven = players.filter((element) => {
             if (element?.positions[0]?.fromTime === "00:00") {
                 return element;
             }
@@ -24,14 +24,12 @@ function Lineup({ players }) {
                 return a.jerseyNumber - b.jerseyNumber;
             }
         })
-        console.log(players.length);
-        console.log(firstEleven.length);
         return firstEleven;
     }
 
     return (
         <div className="lineup-component">
-            <div className="lineup-players text-left">
+            <div className="lineup-players">
                 <ul>
                     {
                         firstEleven.map((element, index) => {

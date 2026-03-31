@@ -1,20 +1,20 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Results.css';
 import { useEffect } from 'react';
-import { useApi } from '../../../hooks/useApi';
 import { getCurrentTime } from '../../../utils/date.js';
+import { useAuth } from '../../../hooks/useAuth.jsx'
 
 function Results() {
+    const { accessToken } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const { get } = useApi();
     const { team, matches } = location.state || [];
 
     useEffect(() => {
-        if (matches.length === 0 || team === null) {
+        if (matches.length === 0 || team === null || !accessToken) {
             navigate('/');
         }
-    }, []);
+    }, [accessToken]);
 
     async function getDetailsAboutMatch(match) {
         if (match.matchId) {
@@ -22,48 +22,53 @@ function Results() {
         }
     }
 
+    const getResult = (match) => {
+        if (match?.winner === team?.teamName) return "W";
+        if (match?.winner === "Draw") return "D";
+        return "L";
+    }
+
     return (
-        <div className='matches-page'>
-            <div className='matches-header mt-10'>
-                <p className='text-center'>Matches played by <span className='font-bold'>{team?.teamName}</span></p>
+        <div className='results-page'>
+            <div className='results-header'>
+                <h1 className='results-title'>{team?.teamName}</h1>
             </div>
 
-            {
-                matches?.length > 0 ? (
-                    <div className="table max-w-5xl mx-auto border mt-10 mb-10">
-                        <div className='table-row font-bold'>
-                            <div className="table-cell text-center p-2">Date</div>
-                            <div className="table-cell text-center p-2">MW</div>
-                            <div className="table-cell text-center p-2">Match</div>
-                            <div className="table-cell text-center p-2">Result</div>
-                        </div>
-
-                        {matches.map((match, index) => (
-                            <div key={index} className='table-row hover:bg-green-100 cursor-pointer' onClick={() => getDetailsAboutMatch(match)}>
-                                <div className="table-cell text-center border-t pl-5 pr-5">
-                                    {new Date(match?.matchDate).toLocaleDateString()} {getCurrentTime(match?.kickOff)}
-                                </div>
-
-                                <div className='table-cell text-center p-2 border-t pl-5 pr-5'>
-                                    {match?.matchWeek}
-                                </div>
-
-                                <div className="table-cell border-t px-5 py-2">
-                                    <div className='grid grid-cols-3 items-center'>
-                                        <span className='whitespace-nowrap text-center'>{match?.homeTeamName}</span>
-                                        <span className="font-semibold text-center">{match?.homeScore}:{match?.awayScore}</span>
-                                        <span className='whitespace-nowrap text-center'>{match?.awayTeamName}</span>
-                                    </div>
-                                </div>
-
-                                <div className="table-cell text-center border-t pl-5 pr-5">
-                                    {match?.winner === team?.teamName ? "W" : match?.winner === "Draw" ? "D" : "L"}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : null
-            }
+            {matches?.length > 0 && (
+                <div className="results-table-wrapper">
+                    <table className="results-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>MW</th>
+                                <th colSpan={3}>Match</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {matches.map((match, index) => {
+                                const result = getResult(match);
+                                return (
+                                    <tr key={index} onClick={() => getDetailsAboutMatch(match)}>
+                                        <td className="results-date">
+                                            {new Date(match?.matchDate).toLocaleDateString()} {getCurrentTime(match?.kickOff)}
+                                        </td>
+                                        <td className="results-mw">{match?.matchWeek}</td>
+                                        <td className="results-home">{match?.homeTeamName}</td>
+                                        <td className="results-score">{match?.homeScore}:{match?.awayScore}</td>
+                                        <td className="results-away">{match?.awayTeamName}</td>
+                                        <td className="results-result">
+                                            <span className={`result-badge result-${result.toLowerCase()}`}>
+                                                {result}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }

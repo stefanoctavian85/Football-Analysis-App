@@ -1,19 +1,99 @@
-.competitions-list {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-}
-
-.competition-card {
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 10px;
-    max-width: 300px;
-}
-
-.competition-card-upper-side {
+.standings-page {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    padding: 24px 32px;
+}
+
+.standings-header {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 24px;
+}
+
+.standings-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.competitions-list {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+}
+
+.country-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-header {
+    padding: 6px 0;
+    border-bottom: 2px solid #111111;
+    margin-bottom: 2px;
+}
+
+.country-name {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #111111;
+}
+
+.competition-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    transition: background 0.1s;
+    gap: 12px;
+}
+
+.competition-row:hover {
+    background: #f9f9f9;
+}
+
+.competition-row-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.gender-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.gender-men {
+    background: #e8f0fc;
+    color: #2a5ec4;
+}
+
+.gender-women {
+    background: #f5e8fc;
+    color: #8b2ec4;
+}
+
+.competition-row-arrow {
+    font-size: 18px;
+    color: #cccccc;
+    line-height: 1;
 }

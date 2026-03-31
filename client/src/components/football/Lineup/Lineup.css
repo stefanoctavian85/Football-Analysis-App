@@ -1,3 +1,28 @@
+.lineup-component {
+    width: 150px;
+    padding-top: 8px;
+    flex-shrink: 0;
+}
+
+.lineup-players ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.lineup-players li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
 .lineup-player {
-    margin-top: 5px;
+    padding: 7px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

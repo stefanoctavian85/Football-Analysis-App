@@ -1,8 +1,85 @@
+.match-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    padding: 24px 32px;
+}
+
+.match-header {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+}
+
+.match-header-team {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex: 1;
+}
+
+.match-header-team.home {
+    text-align: right;
+}
+
+.match-header-team.away {
+    text-align: left;
+}
+
+.match-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 32px;
+}
+
+.match-header-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: 0.04em;
+}
+
+.match-header-date {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.match-header-hour {
+    font-size: 11px;
+}
+
 .match-content {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.match-content-center {
+    flex: 1;
+    min-width: 700px;
     display: flex;
     justify-content: center;
 }
 
-.match-content-players {
-    margin: auto;
+.match-content-center svg {
+    width: 100%;
+    height: auto;
 }

@@ -1,6 +1,9 @@
 function PitchSVG({ homePlayers, awayPlayers }) {
   function getName(player) {
-    let name = player.player?.playerNickname === '' ? player.player?.playerNickname : player.player?.playerName;
+    if (player.player?.playerNickname) {
+      return player.player?.playerNickname;
+    }
+    let name = player.player?.playerName;
     const nameArray = name.split(" ");
     const lastName = nameArray.slice(1).join(" ");
     return lastName;

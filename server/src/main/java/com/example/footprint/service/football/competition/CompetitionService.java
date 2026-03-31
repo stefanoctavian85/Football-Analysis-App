@@ -5,5 +5,6 @@ import com.example.footprint.domain.dto.football.combinations.CompetitionSeasons
 import java.util.List;
 
 public interface CompetitionService {
-    List<CompetitionSeasonsDto> getAllCompetitions();
+    List<CompetitionSeasonsDto> getAllCompetitions(int page, int pageLimit);
+    int countAllCompetitions();
 }

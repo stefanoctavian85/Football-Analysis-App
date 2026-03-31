@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Match.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useApi } from '../../../hooks/useApi';
+import { useAuth } from '../../../hooks/useAuth';
 import { ENDPOINTS } from '../../../config/constants';
 import PitchSVG from '../Pitch/Pitch';
 import { getCurrentTime, getDate } from '../../../utils/date';
@@ -10,12 +11,18 @@ import Lineup from '../Lineup/Lineup';
 function Match() {
     const { matchId } = useParams();
     const { get } = useApi();
+    const { accessToken } = useAuth();
     const [matchDetails, setMatchDetails] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        getMatchDetails();
-    }, []);
+        if (accessToken) {
+            getMatchDetails();
+        } else {
+            navigate('/');
+        }
+    }, [accessToken]);
 
     async function getMatchDetails() {
         try {
@@ -37,7 +44,7 @@ function Match() {
             attackers: [],
         };
 
-        startingEleven.forEach((player, _) => {
+        startingEleven.forEach((player) => {
             const position = player.positions[0]?.position;
             if (position === "Goalkeeper") {
                 lines.goalkeeper.push(player);
@@ -111,45 +118,37 @@ function Match() {
 
     if (isLoading) {
         return (
-            <div>Waiting...</div>
+            <div className="match-page">
+                <p style={{ fontSize: '20px', marginTop: '48px', display: 'flex', justifyContent: 'center' }}>Loading...</p>
+            </div>
         );
     }
 
     return (
-        <div className='match-page max-w-full'>
-            <div className='match-header mt-10 flex flex-row justify-center gap-[60px]'>
-                <div className='match-header-left'>
-                    <p>{matchDetails?.match.homeTeamName}</p>
+        <div className="match-page">
+            <div className="match-header">
+                <span className="match-header-team home">{matchDetails?.match.homeTeamName}</span>
+
+                <div className="match-header-center">
+                    <span className="match-header-score">
+                        {matchDetails?.match.homeScore} - {matchDetails?.match.awayScore}
+                    </span>
+                    <span className="match-header-date">{getDate(matchDetails?.match.matchDate)}</span>
+                    <span className="match-header-hour">{getCurrentTime(matchDetails?.match.kickOff)}</span>
                 </div>
 
-                <div className='match-header-center flex flex-col items-center justify-center'>
-                    <div className='match-header-score'>
-                        <p className='text-right'>{matchDetails?.match.homeScore} - {matchDetails?.match.awayScore}</p>
-                    </div>
-                    <div className='match-header-date'>
-                        <p className='text-center'>{getDate(matchDetails?.match.matchDate)}</p>
-                    </div>
-                    <div className='match-header-hour'>
-                        <p className='text-left'>{getCurrentTime(matchDetails?.match.kickOff)}</p>
-                    </div>
-                </div>
-
-                <div className='match-header-right'>
-                    <p>{matchDetails?.match.awayTeamName}</p>
-                </div>
+                <span className="match-header-team away">{matchDetails?.match.awayTeamName}</span>
             </div>
 
-            <div className='match-content'>
-                <div className='match-content-players'>
-                    <Lineup players={matchDetails?.homeTeam.players}></Lineup>
+            <div className="match-content">
+                <Lineup players={matchDetails?.homeTeam.players} />
+                <div className="match-content-center">
+                    <PitchSVG
+                        homePlayers={getStartingPlayers(matchDetails?.homeTeam.players, true)}
+                        awayPlayers={getStartingPlayers(matchDetails?.awayTeam.players, false)}
+                    />
                 </div>
-                <div className='match-content-center'>
-                    <PitchSVG homePlayers={getStartingPlayers(matchDetails?.homeTeam.players, true)} awayPlayers={getStartingPlayers(matchDetails?.awayTeam.players, false)} />
-                </div>
-                <div className='match-content-players'>
-                    <Lineup players={matchDetails?.awayTeam.players}></Lineup>
-                </div>
-                
+                <Lineup players={matchDetails?.awayTeam.players} />
             </div>
         </div>
     );

@@ -1,5 +1,152 @@
-.standings-team {
+.championship-page {
     display: flex;
-    flex-direction: row;
-    gap: 200px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    padding: 24px 32px;
+}
+
+.championship-header {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 24px;
+}
+
+.championship-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.championship-season-form {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.championship-season-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.championship-season-select {
+    flex: 1;
+    height: 36px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111111;
+    padding: 0 10px;
+    background: #ffffff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.1s;
+}
+
+.championship-season-select:hover {
+    border-color: #c0c0c0;
+}
+
+.championship-season-select:focus {
+    border-color: #111111;
+}
+
+.championship-season-btn {
+    height: 36px;
+    padding: 0 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #111111;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.1s, border-color 0.1s;
+}
+
+.championship-season-btn:hover {
+    background: #f5f5f5;
+    border-color: #c0c0c0;
+}
+
+.championship-standings {
+    width: 100%;
+    max-width: 700px;
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.standings-table thead tr {
+    border-bottom: 2px solid #111111;
+}
+
+.standings-table thead th {
+    padding: 6px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888888;
+    text-align: center;
+}
+
+.standings-table thead th:nth-child(2) {
+    text-align: left;
+}
+
+.standings-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.1s;
+}
+
+.standings-table tbody tr:hover {
+    background: #f9f9f9;
+}
+
+.standings-table td {
+    padding: 10px 8px;
+    text-align: center;
+    color: #111111;
+    font-weight: 400;
+}
+
+.standings-table td:nth-child(2) {
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.standings-table td:nth-child(2):hover {
+    color: #2a5ec4;
+}
+
+.standings-rank {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+.standings-points {
+    font-weight: 700;
+    color: #111111;
 }

@@ -1,0 +1,120 @@
+.results-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    padding: 24px 32px;
+}
+
+.results-header {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 24px;
+}
+
+.results-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.results-table-wrapper {
+    width: 100%;
+    max-width: 700px;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.results-table thead tr {
+    border-bottom: 2px solid #111111;
+}
+
+.results-table thead th {
+    padding: 6px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888888;
+    text-align: center;
+}
+
+.results-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.results-table tbody tr:hover {
+    background: #f9f9f9;
+}
+
+.results-table td {
+    padding: 10px 8px;
+    text-align: center;
+    color: #111111;
+}
+
+.results-date {
+    font-size: 12px;
+    color: #888888;
+    white-space: nowrap;
+}
+
+.results-mw {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+.results-home {
+    text-align: right;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.results-score {
+    font-weight: 700;
+    padding: 0 12px;
+    white-space: nowrap;
+}
+
+.results-away {
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.result-badge {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.result-w {
+    background: #e8f5ee;
+    color: #2a8a4a;
+}
+
+.result-d {
+    background: #f0f0f0;
+    color: #888888;
+}
+
+.result-l {
+    background: #fceaea;
+    color: #c0392b;
+}
